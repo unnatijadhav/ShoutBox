@@ -1,0 +1,51 @@
+<div class="conatiner-fluid" id="homeContainer">
+  <div class="mt-5">
+    <div class="row">
+      <div class="col-lg-3 col-xl-4 col-md-3 col-3"></div>
+      <div class="col-lg-6 col-xl-4 col-md-3 col-6  trans-div-light p-3">
+        <div class="text-center">
+          <h3 class="font-weight-bold">SHOUT-BOX</h3>
+          <small class="text-success"> Connecting Hearts, generated at least 1k social shares (most of them generated
+            far more)</small>
+          <hr>
+          <h5 class="font-weight-bold text-success">LOGIN HERE</h5>
+        </div>
+        <form (submit)="authenticateUser()" #loginform="ngForm">
+          <small class="form-text text-danger" *ngIf="loginform.touched && loginform.errors">
+            Invalid Username or Password.</small>
+          <div class="form-group">
+            <label class="text-uppercase font-weight-bold" for="inputEmail"><span class="text-danger">*</span> Email
+              address</label>
+            <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="newUser.email"
+              #user="ngModel" placeholder="Enter email" required (change)=verifyMail()>
+            <div *ngIf="user.touched && !user.valid">
+              <small class="form-text text-danger" *ngIf="user.touched && user.errors.required">Email Id
+                required.</small>
+              <small class="form-text text-danger" *ngIf="user.touched && user.errors.pattern">Incorrect Email
+                Id.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="text-uppercase font-weight-bold" for="inputPassword"><span class="text-danger">*</span>
+              Password</label>
+            <input type="password" class="form-control" id="inputPassword" name="inputPassword"
+              [(ngModel)]="newUser.password" #pass="ngModel" placeholder="Password" required>
+            <div *ngIf="pass.touched && !pass.valid">
+              <small class="form-text text-danger" *ngIf="pass.touched && pass.errors.required">Password
+                required.</small>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn grad-btn-success text-center text-uppercase">
+              <i class="material-icons">lock</i> Login Here</button>
+            <hr>
+            <small> Forgot the Password?  <a class="text-success" routerLink="/forgetPassword">Click Here</a></small><br>
+            <small> New Registration?  <a class="text-success" routerLink="/register">Register Here</a></small>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-3 col-xl-4 col-md-3 col-3"></div>
+    </div>
+
+  </div>
+</div>

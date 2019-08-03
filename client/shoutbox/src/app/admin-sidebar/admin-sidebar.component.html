@@ -1,0 +1,38 @@
+<ul id="sidebar-view">
+  <li>
+      <div id="admin-initials"
+      class="rounded-circle border-light text-light text-center px-4 py-5">
+          <span class="display-4"  *ngIf="currentUser.firstName">{{currentUser.firstName[0] }}{{currentUser.lastName[0]}}</span>
+      </div>
+    <hr>
+  </li>
+  <li id="title-li" class="text-center "><a>
+      <h5 class="text-uppercase">
+        <strong>{{currentUser.firstName}}&nbsp;{{currentUser.lastName}} </strong>
+        </h5>
+    </a></li>
+  <li>
+    <div class="btn-group">
+      <div><i class="material-icons rounded-circle text-light bg-success"> home </i></div>
+      <div><a class="text-uppercase" routerLink="/admin">&nbsp; Home</a></div>
+    </div>
+  </li>
+  <li>
+    <div class="btn-group">
+      <div><i class="material-icons rounded-circle text-light bg-primary"> assignment_returned </i></div>
+      <div><a class="text-uppercase" routerLink="/approveusers">&nbsp; New Users</a></div>
+    </div>
+  </li>
+  <li>
+    <div class="btn-group">
+      <div><i class="material-icons rounded-circle text-light bg-warning"> bug_report </i></div>
+      <div><a class="text-uppercase" href="/reported">&nbsp; Reported Shouts</a></div>
+    </div>
+  </li>
+  <li>
+    <div class="btn-group">
+      <div><i class="material-icons rounded-circle text-light bg-danger"> https </i></div>
+      <div><a class="text-uppercase" (click)="logout()">&nbsp; Logout</a></div>
+    </div>
+  </li>
+</ul>

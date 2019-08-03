@@ -1,0 +1,106 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+$t_l_text_color:#000000;
+$t_l_text_bgcolor1:#f7f7f7;
+$t_l_text_bgcolor2:#ffffff;
+$t_l_text_border_color:#1616166b;
+$t_l_text_shadow_color:#1616166b;
+$t_d_text_color:#f7f7f7;
+$t_d_text_bgcolor1:#384251;
+$t_d_text_bgcolor2:#181c23;
+$t_d_text_border_color:#161616;
+$t_d_text_shadow_color:#e5e5e5;
+$opacity:0.95;
+$font-text:'Josefin Sans', sans-serif;
+$font-heading-text:'Raleway', sans-serif;
+
+$g_c_success_l:#38ef7d;
+$g_c_success_d:#11998e;
+
+$g_c_danger_l:#dd1818;
+$g_c_danger_d:#333333;
+
+$g_c_alert_l:#EDDE5D;
+$g_c_alert_d:#F09819;
+
+$g_c_primary_l:#1488CC;
+$g_c_primary_d:#2B32B2;
+
+$g_c_secondary_l:#A8CABA;
+$g_c_secondary_d:#5D4157;
+
+
+
+body{
+  font-family:$font-text;
+  background: url(./assets/banner.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: $font-heading-text;
+}
+
+.trans-div-light{
+  color:$t_l_text_color;
+  background:linear-gradient($t_l_text_bgcolor1,$t_l_text_bgcolor2);
+  opacity:$opacity;
+  border:1px solid $t_l_text_border_color;
+  box-shadow:0px 0px 1px 1px $t_l_text_shadow_color;
+  border-radius:5px;
+}
+.trans-div-dark{
+  color:$t_d_text_color;
+  background:linear-gradient($t_d_text_bgcolor1,$t_d_text_bgcolor2);
+  opacity:$opacity;
+  border:1px solid $t_d_text_border_color;
+  box-shadow:0px 0px 1px 1px $t_d_text_shadow_color;
+  border-radius:5px;
+}
+
+.grad-btn-success{
+    background: linear-gradient($g_c_success_l,$g_c_success_d);
+    border: none;
+    text-transform:capitalize;
+    &:hover{
+        background: linear-gradient($g_c_success_d,$g_c_success_l);
+    }
+}
+.grad-btn-danger{
+    background: linear-gradient($g_c_danger_l,$g_c_danger_d);
+    color: #f7f7f7;
+    border: none;
+
+    text-transform:capitalize;
+    &:hover{
+        background:linear-gradient($g_c_danger_d,$g_c_danger_l);
+        color: #f7f7f7;
+    }
+}
+.grad-btn-alert{
+    background: linear-gradient($g_c_alert_l,$g_c_alert_d);
+    border: none;
+    text-transform:capitalize;
+    &:hover{
+        background:linear-gradient($g_c_alert_d,$g_c_alert_l);
+    }
+}
+.grad-btn-primary{
+    background: linear-gradient($g_c_primary_l,$g_c_primary_d);
+    color: #f7f7f7;
+    border: none;
+    text-transform:capitalize;
+    &:hover{
+        color: #f7f7f7;
+        background: linear-gradient($g_c_primary_d,$g_c_primary_l);
+    }
+}
+.grad-btn-secondary{
+    background: linear-gradient($g_c_secondary_l,$g_c_secondary_d);
+    border: none;
+    text-transform:capitalize;
+    &:hover{
+        background: linear-gradient($g_c_secondary_d,$g_c_secondary_l);
+    }
+}

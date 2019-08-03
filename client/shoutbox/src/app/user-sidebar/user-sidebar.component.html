@@ -1,0 +1,35 @@
+<ul>
+  <li>
+    <!-- <img src="../../assets/male.jpg" class="rounded-circle" alt="profile" height="125rem" width="125rem"> -->
+    <div id="user-initials" 
+    class="rounded-circle border-light text-light text-center px-4 py-5">
+      <span class="display-4" *ngIf="currentUser.firstName">{{currentUser.firstName[0] }}{{currentUser.lastName[0]}}</span>
+    </div>
+    <hr>
+  </li>
+  <li id="title-li" class="text-center"><a class="text-uppercase" routerLink="/profile"><h5 class="font-weight-bold">{{currentUser.firstName}}&nbsp;{{currentUser.lastName}}</h5></a></li>
+  <li>
+    <div class="btn-group">
+      <div><i class="material-icons rounded-circle text-light bg-primary"> home </i></div>
+      <div><a class="text-uppercase" routerLink="/user">&nbsp; Home</a></div>
+    </div>
+  </li>
+  <li>
+    <div class="btn-group">
+      <div><i class="material-icons rounded-circle text-light bg-secondary"> face </i></div>
+      <div><a class="text-uppercase" routerLink="/profile">&nbsp; Your Profile</a></div>
+    </div>
+  </li>
+  <li>
+    <div class="btn-group">
+      <div><i class="material-icons rounded-circle text-light bg-warning"> search </i></div>
+      <div><a class="text-uppercase" routerLink="/my-friend">&nbsp; Search Friends</a></div>
+    </div>
+  </li>
+  <li>
+    <div class="btn-group">
+      <div><i class="material-icons rounded-circle text-light bg-danger"> https </i></div>
+      <div><a  class="text-uppercase"  (click)="logout()">&nbsp; Logout</a></div>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,61 @@
+<div id="sidebar">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div id="adminContent">
+    <h4> <span class="text-secondary">Welcome </span> <strong> {{currentUser.firstName}}&nbsp;{{currentUser.lastName}}
+      </strong></h4>
+    <hr>
+
+    <div class="trans-div-dark container p-3 mt-4">
+      <h4 class="text-center text-uppercase">Reported Shouts</h4>
+      <hr class="bg-light w-50">
+
+
+      <div class="text-center bg-light mt-3 alert" id="usersView" *ngIf="!userBlobShouts || !userBlobShouts.length">
+        <h6 class="text-danger">
+          <i class="material-icons">notification_important</i> <br>
+          Oops! No Shouts are reported .
+          <hr class="w-50">
+        </h6>
+      </div>
+
+
+      <div id="usersView" *ngIf='userBlobShouts && userBlobShouts.length'>
+        <div class="row">
+          <div class="col-12 p-2">
+            <table class="table table-striped text-light text-center">
+              <thead class="thead-light">
+                <tr>
+                  <th>Shout Id</th>
+                  <th>Timestamp</th>
+                  <th>Shout Contents</th>
+                  <th>Delete Shout</th>
+                </tr>
+              </thead>
+              <tr *ngFor="let reportedShout of userBlobShouts|paginate : {itemsPerPage:10,currentPage:p}">
+                <td>{{ reportedShout.id }}</td>
+                <td>{{ reportedShout.timestamp }}</td>
+                <td>{{ reportedShout.data }}</td>
+                <td>
+                  <a class="btn grad-btn-danger text-uppercase" (click)="deleteReportedShout(reportedShout.id)"
+                    *ngIf='reportedShout.shoutActive; else elseBlock'>Delete</a>
+                  <ng-template #elseBlock> <span class="text-success"> DELETED </span></ng-template>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bg-light text-center col-12 pt-3 trans-div-light">
+            <pagination-controls (pageChange)="p =$event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center bg-light mt-3 alert" id="usersView" *ngIf='userBlobShouts && !userBlobShouts.length'>
+        <h6 class="text-danger">
+          <i class="material-icons">notification_important</i> <br> Currently no Reported Shouts.
+        </h6>
+      </div>
+
+
+    </div>
+  </div>
+</div>

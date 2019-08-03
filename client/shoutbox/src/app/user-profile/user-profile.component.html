@@ -1,0 +1,82 @@
+<div id="sidebar">
+  <app-user-sidebar></app-user-sidebar>
+  <div id="userContent">
+    <h4> <span class="text-secondary">Welcome </span> <strong> {{currentUser.firstName}}&nbsp;{{currentUser.lastName}}
+      </strong></h4>
+    <hr>
+    <div class="container py-3 ">
+      <div class="trans-div-light conatiner p-3">
+        <h4 class="text-center text-uppercase">My Shouts </h4>
+        <br>
+
+        <div class="text-center bg-light mt-3 alert" id="usersView" *ngIf="!userBlobShouts || !userBlobShouts.length">
+          <h6 class="text-danger">
+            <i class="material-icons">notification_important</i> <br>
+            Oops! No Shouts are posted by you.
+            <hr class="w-50">
+          </h6>
+        </div>
+
+        <div id="shoutView" *ngIf="userBlobShouts && userBlobShouts.length" >
+          <div *ngFor="let shouts of userBlobShouts | paginate: { itemsPerPage: 10, currentPage: p }" class="px-3">
+            <div class="row">
+              <div class="col-9 p-2  border rounded  bg-light">
+                <h5 class="alert bg-white rounded" *ngIf="currentUser.firstName">
+                  {{currentUser.firstName}}&nbsp;{{currentUser.lastName}}
+                  <small class="text-secondary">&nbsp;posted the shout on &nbsp;</small>
+                  <small class="text-primary">{{shouts.timestamp}}</small>
+                </h5><br>
+                <p *ngIf="shouts.shoutContentType == 'text' " style="width:20rem;">
+                  {{shouts.data}}
+                </p>
+                <p *ngIf="shouts.shoutContentType == 'audio/mp3' " class="-text-center">
+                  <audio controls volume="0.9" src="data:audio/mp3;base64,{{shouts.data}}">
+                  </audio>
+                </p>
+                <p *ngIf="shouts.shoutContentType == 'audio/ogg' " class="-text-center">
+                  <audio controls volume="0.9" src="data:audio/ogg;base64,{{shouts.data}}">
+                  </audio>
+                </p>
+                <p *ngIf="shouts.shoutContentType == 'audio/wav' " class="-text-center">
+                  <audio controls volume="0.9" src="data:audio/wav;base64,{{shouts.data}}">
+                  </audio>
+                </p>
+                <p *ngIf="shouts.shoutContentType == 'video/mp4'" class="text-center">
+                  <video controls src="data:video/mp4;base64,{{shouts.data}}" style=" width:20rem;height: 250px;">
+                  </video>
+                </p>
+                <p *ngIf="shouts.shoutContentType == 'video/ogg'" class="text-center">
+                  <video controls src="data:video/ogg;base64,{{shouts.data}}" style=" width:20rem;height: 250px;">
+                  </video>
+                </p>
+                <p *ngIf="shouts.shoutContentType == 'video/webm'" class="text-center">
+                  <video controls src="data:video/webm;base64,{{shouts.data}}" style=" width:20rem;height: 250px;">
+                  </video>
+                </p>
+                <p *ngIf="shouts.shoutContentType == 'image/png' " class="text-center">
+                  <img src="data:image/png;base64,{{shouts.data}}" alt="image"
+                    style="width:20rem;height: 100%;block-size: 300px"><br>
+                </p>
+                <p *ngIf="shouts.shoutContentType == 'image/jpeg' " class="text-center">
+                  <img src="data:image/png;base64,{{shouts.data}}" alt="image"
+                    style="width:20rem;height: 100%;block-size: 300px"><br>
+                </p>
+              </div>
+              <div class="col-3 py-5">
+                <div class="text-center btn-group">
+                  <a class="btn grad-btn-alert btn-group text-uppercase" (click)="deleteShout(shouts.id)">
+                    <i class="material-icons">delete_sweep</i> Remove Shout </a>
+                </div>
+              </div>
+            </div>
+            <hr class="w-50">
+          </div>
+          <!-- repeated shouts ends here  -->
+          <div class="bg-dark text-light text-center m-2 alert rounded">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

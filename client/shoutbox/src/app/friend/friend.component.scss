@@ -1,0 +1,14 @@
+#sidebar{
+    min-height: 92vh;
+    background-color: #abababee;
+    display: grid;
+    grid-template-columns: 16rem auto;
+
+    #userContent{
+        background-color: #ffffff7a;
+        padding: 2rem;
+    }
+    @media screen and (max-width:1130px){
+        grid-template-columns: 12rem auto;
+     }
+}

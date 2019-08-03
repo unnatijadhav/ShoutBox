@@ -1,0 +1,208 @@
+<div class="container">
+  <h3 class="text-center mt-4 text-primary text-uppercase font-weight-bold">Register Here</h3>
+  <hr>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6 trans-div-light mt-3 p-4">
+      <form (submit)="registerNewUser()" method="POST" #myForm="ngForm">
+        <div class="form-group">
+          <label class="text-uppercase font-weight-bold" for="inputFName"><span class="text-danger">*</span> First Name</label>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="material-icons text-primary" *ngIf="fname.untouched"> account_circle </i>
+                <i class="material-icons text-success" *ngIf="fname.touched && fname.valid"> check_circle_outline </i>
+                <i class="material-icons text-danger" *ngIf="fname.touched && !fname.valid"> error_outline </i>
+              </span>
+            </div>
+            <input type="email" class="form-control" id="inputFName" name="inputFName" [(ngModel)]="newuser.firstName"
+              #fname="ngModel" placeholder="John" required pattern="^[A-Z][a-zA-Z ]{2,24}" maxlength="25" minlength="3">
+          </div>
+          <div *ngIf="fname.touched && !fname.valid">
+            <small class="form-text text-danger" *ngIf="fname.touched && fname.errors.required"> First Name
+              required. </small>
+            <small class="form-text text-danger" *ngIf="fname.touched && fname.errors.pattern">First Name
+              should start with Uppercase letter.</small>
+            <small class="form-text text-danger" *ngIf="fname.touched && fname.errors.minlength">Minimum
+              length is 3 chars.</small>
+            <small class="form-text text-danger" *ngIf="fname.touched && fname.errors.maxlength">Maximum
+              length is 25 chars.</small>
+          </div>
+        </div>
+        <!-- form-group-firstname ends here -->
+
+        <div class="form-group">
+          <label class="text-uppercase font-weight-bold" for="inputLName"><span class="text-danger">*</span> Last Name</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="material-icons text-primary" *ngIf="lname.untouched"> account_circle </i>
+                <i class="material-icons text-success" *ngIf="lname.touched && lname.valid"> check_circle_outline </i>
+                <i class="material-icons text-danger" *ngIf="lname.touched && !lname.valid"> error_outline </i>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="inputLName" name="inputLName" [(ngModel)]="newuser.lastName"
+              #lname="ngModel" placeholder="Wick" required pattern="^[A-Z][a-zA-Z ]{2,24}" maxlength="25" minlength="3">
+          </div>
+
+          <div *ngIf="lname.touched && !lname.valid">
+            <small class="form-text text-danger" *ngIf="lname.touched && lname.errors.required">Last Name
+              required.</small>
+            <small class="form-text text-danger" *ngIf="lname.touched && lname.errors.pattern">Last Name
+              should start with Uppercase letter.</small>
+            <small class="form-text text-danger" *ngIf="lname.touched && lname.errors.minlength">Minimum
+              length is 3 chars.</small>
+            <small class="form-text text-danger" *ngIf="lname.touched && lname.errors.maxlength">Maximum
+              length is 25 chars.</small>
+          </div>
+        </div>
+        <!-- form-group-lastname ends here -->
+
+        <div class="form-group">
+          <label class="text-uppercase font-weight-bold" for="inputDOB"><span class="text-danger">*</span> Date of Birth</label>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="material-icons text-primary" *ngIf="dob.untouched"> today </i>
+                <i class="material-icons text-success" *ngIf="dob.touched && dob.valid"> check_circle_outline </i>
+                <i class="material-icons text-danger" *ngIf="dob.touched && !dob.valid"> error_outline </i>
+              </span>
+            </div>
+            <input type="date" class="form-control" id="inputDOB" required name="inputDOB"
+              [(ngModel)]="newuser.dateOfBirth" #dob="ngModel">
+          </div>
+          <div *ngIf="dob.touched && !dob.valid">
+            <small class="form-text text-danger" *ngIf="dob.touched && dob.errors.required">Date of Birth
+              required.</small>
+          </div>
+        </div>
+        <!-- form-group-date-of-birth ends here -->
+
+        <div class="form-group">
+          <label class="text-uppercase font-weight-bold" for="inputEmail"><span class="text-danger">*</span> Email address</label>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="material-icons text-primary" *ngIf="mail.untouched"> mail </i>
+                <i class="material-icons text-success" *ngIf="mail.touched && mail.valid && uniqueId"> check_circle_outline </i>
+                <i class="material-icons text-danger" *ngIf="(mail.touched && !mail.valid) || (mail.valid && !uniqueId)"> error_outline </i>
+              </span>
+            </div>
+            <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="newuser.email"
+              #mail="ngModel" placeholder="Enter email" required (change)=verifyMail() pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$">
+          </div>
+          <div *ngIf="mail.touched && !mail.valid">
+            <small class="form-text text-danger" *ngIf="mail.touched && mail.errors.required">E-Mail
+              required.</small>
+            <small class="form-text text-danger" *ngIf="mail.touched && mail.errors.pattern">Incorrect
+              E-Mail.</small>
+          </div>
+          <div *ngIf="mail.touched && mail.valid">
+            <small class="form-text text-danger" *ngIf="!uniqueId">E-Mail
+              already exists. Try with some other ID.</small>
+          </div>
+        </div>
+        <!-- form-group-e-mail ends here -->
+
+
+        <div class="form-group">
+          <label class="text-uppercase font-weight-bold" for="inputPassword"><span class="text-danger">*</span> Password</label>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="material-icons text-primary" *ngIf="pass1.untouched"> vpn_key </i>
+                <i class="material-icons text-success" *ngIf="pass1.touched && pass1.valid"> check_circle_outline </i>
+                <i class="material-icons text-danger" *ngIf="pass1.touched && !pass1.valid"> error_outline </i>
+              </span>
+            </div>
+            <input type="password" class="form-control" id="inputPassword" name="inputPassword" [(ngModel)]="pass"
+              #pass1="ngModel" placeholder="Password" required pattern="^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$" maxlength="25"
+              minlength="7">
+          </div>
+          <div *ngIf="pass1.touched && !pass1.valid">
+            <small class="form-text text-danger" *ngIf="pass1.touched && pass1.errors.required">Password
+              required.</small>
+            <small class="form-text text-danger" *ngIf="pass1.touched && pass1.errors.pattern">Password
+              should contain atleast 1 Uppercase, 1 Lowercase & 1 Special Symbol letter.</small>
+            <small class="form-text text-danger" *ngIf="pass1.touched && pass1.errors.minlength">Password
+              should contain atleast 7 chars.</small>
+            <small class="form-text text-danger" *ngIf="pass1.touched && pass1.errors.maxlength">Password
+              should contain atmost 25 chars.</small>
+          </div>
+        </div>
+        <!-- form-group-password ends here -->
+
+
+        <div class="form-group">
+          <label class="text-uppercase font-weight-bold" for="inputConfirmPassword"><span class="text-danger">*</span> Confirm Password</label>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="material-icons text-primary" *ngIf="passConfirm.untouched"> vpn_key </i>
+                <i class="material-icons text-success" *ngIf="passConfirm.touched && passConfirm.valid">
+                  check_circle_outline </i>
+                <i class="material-icons text-danger" *ngIf="passConfirm.touched && !passConfirm.valid"> error_outline
+                </i>
+              </span>
+            </div>
+            <input type="password" class="form-control" id="inputConfirmPassword" name="inputConfirmPassword" (change)="checkPasswords()"
+              [(ngModel)]="newuser.password" #passConfirm="ngModel" placeholder="Confirm Password" required
+              pattern="^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$" maxlength="25" minlength="7">
+          </div>
+          <div *ngIf="passConfirm.touched && !passConfirm.valid">
+            <small class="form-text text-danger"
+              *ngIf="passConfirm.touched && passConfirm.errors.required">Password required.</small>
+            <small class="form-text text-danger"
+              *ngIf="passConfirm.touched && passConfirm.errors.pattern">Password should contain atleast 1 Uppercase, 1 Lowercase & 1 Special Symbol letter.</small>
+            <small class="form-text text-danger"
+              *ngIf="passConfirm.touched && passConfirm.errors.minlength">Password should contain atleast 7
+              chars.</small>
+            <small class="form-text text-danger"
+              *ngIf="passConfirm.touched && passConfirm.errors.maxlength">Password should contain atmost 25
+              chars.</small>
+
+            <small class="form-text text-danger" *ngIf="!samePass">Passwords
+              not matched.</small>
+          </div>
+        </div>
+        <!-- form-group-confirm-password ends here -->
+
+
+        <div class="form-group">
+          <label class="text-uppercase font-weight-bold" for="inputPassword1"><span class="text-danger">*</span> Gender</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender-radio" [(ngModel)]="newuser.gender" #gen="ngModel"
+              id="exampleRadios1" value="M" checked required>
+            <label class="form-check-label" for="exampleRadios1">
+              Male
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender-radio" [(ngModel)]="newuser.gender" #gen="ngModel"
+              id="exampleRadios2" value="F" required>
+            <label class="form-check-label" for="exampleRadios2">
+              Female
+            </label>
+          </div>
+          <div *ngIf="gen.touched && gen.errors.required">
+            <small class="form-text text-danger">Gender required.</small>
+          </div>
+        </div>
+        <!-- form-group-gender ends here -->
+
+        <hr>
+        <div class="text-center">
+            <button type="submit" class="btn grad-btn-primary text-center" *ngIf="myForm.valid">Register Here</button>
+            <button type="submit" class="btn grad-btn-secondary text-center" 
+            *ngIf="(!myForm.valid && !samePass) || (myForm.valid && !uniqueId)" disabled>Register Here</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>

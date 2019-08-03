@@ -1,0 +1,171 @@
+<div id="sidebar">
+  <app-user-sidebar></app-user-sidebar>
+  <div id="userContent">
+    <h4 *ngIf="currentUser"> <span class="text-secondary">Welcome </span> <strong>
+        {{currentUser.firstName}}&nbsp;{{currentUser.lastName}}
+      </strong></h4>
+    <hr>
+    <div class="trans-div-light container px-3 py-2">
+      <h5 class="text-center font-weight-bold text-uppercase">Post Shout</h5>
+      <hr>
+      <div id="addShouts" class="container-fluid">
+        <form method="post">
+          <div class="row">
+            <div class="col-9">
+              <label class="text-info"> Post your Shout</label>
+              <div class="form-group">
+                <input class="form-control" (change)="onSelecttext($event)" type="text"
+                  placeholder="Write your Shout" name="data">
+                <!-- <textarea class="form-control" placeholder="Write your Shout." rows="2" (change)="onSelecttext($event)" ></textarea> -->
+              </div>
+              <h6 class="text-center text-info col-12">"OR"</h6>
+              <div class="input-group mb-3">
+                <input type="file" (change)="onSelectFile($event)" class="border-bottom w-50 form-control-file"
+                  id="inputGroupFile01" placeholder="Choose File">
+              </div>
+              <small class="text-center text-info">Add your media file (Image, Video or Audio)</small>
+            </div>
+            <div class="col-3 text-center">
+              <button type="submit" class="btn grad-btn-success mt-3 text-uppercase" (click)="onSubmit()">
+                <i class="material-icons"> add_photo_alternate </i> Post Shout
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <hr class="w-50">
+
+    <div class="trans-div-light container py-3">
+      <h4 class="text-center font-weight-bold text-uppercase">Latest Shouts </h4>
+      <hr>
+
+      <div class="text-center bg-light mt-3 alert" id="usersView" *ngIf="!userBlobShouts || !userBlobShouts.length">
+        <h6 class="text-danger">
+          <i class="material-icons">notification_important</i> <br>
+          Oops! No Shouts are posted.
+          <hr class="w-50">
+          <span class="text-info">New with Shoutbox? Feel free to post your 1st Shout </span> </h6>
+      </div>
+
+      <div *ngIf="userBlobShouts && userBlobShouts.length">
+        <div class="input-group mb-3 col-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Filter Shouts by Name</span>
+          </div>
+          <div class="custom-file">
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..."
+              [(ngModel)]="searchString" />
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="material-icons text-primary">search</i></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="shoutsView" class="p-2"
+          *ngFor="let shouts of userBlobShouts | searchFriendFilter : searchString | paginate: { itemsPerPage: 5, currentPage: p }">
+          <div class="row">
+            <div class="col-9 py-2 px-5 bg-white rounded">
+              <h5>
+                {{shouts.owner.firstName}}&nbsp;{{shouts.owner.lastName}}
+                <small class="text-secondary">&nbsp;posted the shout on &nbsp;</small>
+                <small class="text-primary">{{shouts.timestamp}}</small>
+              </h5><br>
+              <p *ngIf="shouts.shoutContentType == 'text' " style="width:40rem;">
+                {{shouts.data}}
+              </p>
+              <p *ngIf="shouts.shoutContentType == 'audio/mp3' " class="-text-center">
+                <audio controls volume="0.9" src="data:audio/mp3;base64,{{shouts.data}}">
+                </audio>
+              </p>
+              <p *ngIf="shouts.shoutContentType == 'audio/ogg' " class="-text-center">
+                <audio controls volume="0.9" src="data:audio/ogg;base64,{{shouts.data}}">
+                </audio>
+              </p>
+              <p *ngIf="shouts.shoutContentType == 'audio/wav' " class="-text-center">
+                <audio controls volume="0.9" src="data:audio/wav;base64,{{shouts.data}}">
+                </audio>
+              </p>
+              <p *ngIf="shouts.shoutContentType == 'video/mp4'" class="text-center">
+                <video controls src="data:video/mp4;base64,{{shouts.data}}" style=" width:20rem;height: 250px;">
+                </video>
+              </p>
+              <p *ngIf="shouts.shoutContentType == 'video/ogg'" class="text-center">
+                <video controls src="data:video/ogg;base64,{{shouts.data}}" style=" width:20rem;height: 250px;">
+                </video>
+              </p>
+              <p *ngIf="shouts.shoutContentType == 'video/webm'" class="text-center">
+                <video controls src="data:video/webm;base64,{{shouts.data}}" style=" width:20rem;height: 250px;">
+                </video>
+              </p>
+              <p *ngIf="shouts.shoutContentType == 'image/png' " class="text-center">
+                <img src="data:image/png;base64,{{shouts.data}}" alt="image"
+                  style="width:20rem;height: 100%;block-size: 300px"><br>
+              </p>
+              <p *ngIf="shouts.shoutContentType == 'image/jpeg' " class="text-center">
+                <img src="data:image/png;base64,{{shouts.data}}" alt="image"
+                  style="width:20rem;height: 100%;block-size: 300px"><br>
+              </p>
+
+              <!-- comments section -->
+              <!-- <button class="btn grad-btn-alert text-uppercase"
+                (click)="hide=!hide">{{hide ? 'Hide Comments' : 'Show Comments'}}</button>
+              <p *ngIf="hide">working       </p>
+            </div> -->
+
+              <!--  CORRECT SHOW COMMENTS -->
+              <div class="col-12 pt-2">
+                <div class="text-center btn-group">
+                  <a class="btn grad-btn-alert btn-group text-uppercase" (click)="getComments(shouts.id)">
+                    <i class="material-icons">question_answer</i> Show Comments </a>
+                </div>
+                <br>
+                <br>
+                <div class="trans-div-light container py-3" *ngIf="currentShout && shouts.id === currentShout.id">
+                  <form (ngSubmit)="postComment(shouts.id); myComm.resetForm()" #myComm="ngForm">
+                    <div id="postCommentsView" class="row py-1 px-3">
+                      <div class="col-9">
+                        <div class="form-group">
+                          <textarea class="form-control" type="text" placeholder="Post your Comment" name="data"
+                            [(ngModel)]="myComment"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-3 pt-3">
+                        <div class="text-center btn-group">
+                          <button type="submit" class="btn grad-btn-alert btn-group text-uppercase">
+                            <i class="material-icons">create</i>&nbsp; Post</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div id="commentsView" class="col-8 row py-1 px-3" *ngFor="let comment of shouts.comments">
+                    <div class="col-2">
+                      <div style="background-color:#136120fa; height: 3.5rem; width: 3.5rem; border:0.2rem solid #ffff"
+                        class="rounded-circle border-light text-light text-center p-2">
+                        <h4>{{comment.user.firstName[0]}}{{comment.user.lastName[0]}}</h4>
+                      </div>
+                    </div>
+                    <div class="col-10">
+                      <h4><b> {{comment.user.firstName}}&nbsp;{{comment.user.lastName}}</b> </h4>
+                      <h5 style="width:30rem"> {{comment.content}}</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3 pt-5" *ngIf="!(currentUserId ===shouts.owner.id)">
+              <div class="text-center btn-group">
+                <a class="btn grad-btn-danger btn-group text-white text-uppercase" (click)="reportShoutById(shouts.id)">
+                  <i class="material-icons">notification_important</i> Report the shout </a>
+              </div>
+            </div>
+          </div>
+          <hr class="w-70">
+        </div>
+        <div class="bg-dark text-light text-center m-2 alert rounded">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

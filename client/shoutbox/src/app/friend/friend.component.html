@@ -1,0 +1,182 @@
+<div id="sidebar">
+  <app-user-sidebar></app-user-sidebar>
+  <div id="userContent">
+    <h4 *ngIf="currentUser && currentUser.firstName"> <span class="text-secondary">Welcome </span> <strong>
+        {{currentUser.firstName}}&nbsp;{{currentUser.lastName}}
+      </strong></h4>
+    <hr>
+
+    <!-- Search friends -->
+    <div class="trans-div-light container py-3">
+      <h4 class="text-center font-weight-bold text-uppercase">Make New Friends </h4>
+      <hr class="w-50">
+
+      <div class="text-center bg-light mt-3 alert" id="usersView" *ngIf="!searchNewFriends || !searchNewFriends.length">
+        <h6 class="text-danger">
+          <i class="material-icons">notification_important</i> <br>Currently no new Friend</h6>
+      </div>
+
+      <div id="users" *ngIf="searchNewFriends && searchNewFriends.length">
+        <div class="input-group mb-3 col-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Filter Users by Name</span>
+          </div>
+          <div class="custom-file">
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..."
+              [(ngModel)]="searchString" />
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="material-icons text-primary">search</i></span>
+            </div>
+          </div>
+        </div>
+        <div id="shoutsView" class="bg-white rounded"
+          *ngFor="let user of searchNewFriends |  filterNames : searchString | paginate: { itemsPerPage: 3, currentPage: p1 }">
+          <div class="col-12 row py-2 px-5">
+            <div class="col-1">
+              <div style="background-color:#136120fa; height: 3.5rem; width: 3.5rem; border:0.2rem solid #ffff"
+                class="rounded-circle border-light text-light text-center p-2">
+                <h4>{{user.firstName[0]}}{{user.lastName[0]}}</h4>
+              </div>
+            </div>
+            <div class="col-7">
+              <h5> {{user.firstName}}&nbsp;{{user.lastName}} </h5>
+              <span> {{user.email}} </span>
+            </div>
+            <div class="col-4 text-center mt-3">
+              <div class="text-center btn-group">
+                <a class="btn grad-btn-success btn-group text-uppercase"
+                  (click)="sendFriendRequest(currentUser.id, user.id)">
+                  <i class="material-icons">person_add</i> Send Request
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="bg-dark text-light text-center m-2 alert rounded">
+          <pagination-controls (pageChange)="p1 = $event"></pagination-controls>
+        </div>
+      </div>
+    </div> <br>
+
+
+
+    <!-- My Pending Friends Notifications -->
+    <div class="trans-div-light container py-3">
+      <h4 class="text-center font-weight-bold text-uppercase"> Pending Friend Requests </h4>
+      <hr class="w-50">
+
+      <div class="text-center bg-light mt-3 alert" id="usersView" *ngIf="pendingFriends && !pendingFriends.length">
+        <h6 class="text-danger">
+          <i class="material-icons">notification_important</i> <br>Currently no Pending Friend Requests</h6>
+      </div>
+      <div *ngIf="pendingFriends && pendingFriends.length">
+        <div class="input-group mb-3 col-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Filter Pending Friends by Name</span>
+          </div>
+          <div class="custom-file">
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..."
+              [(ngModel)]="searchPendingFriends" />
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="material-icons text-primary">search</i></span>
+            </div>
+          </div>
+        </div>
+        <div id="shoutsView" class="bg-white rounded"
+          *ngFor="let user of pendingFriends |  filterNames : searchPendingFriends | paginate: { itemsPerPage: 5, currentPage: p2 }">
+          <div class="col-12 row py-2 px-5">
+            <div class="col-1">
+              <div style="background-color:#136120fa; height: 3.5rem; width: 3.5rem; border:0.2rem solid #ffff"
+                class="rounded-circle border-light text-light text-center p-2">
+                <h4>{{user.firstName[0]}}{{user.lastName[0]}}</h4>
+              </div>
+            </div>
+            <div class="col-7">
+              <h5> {{user.firstName}}&nbsp;{{user.lastName}} </h5>
+              <span> {{user.email}} </span>
+            </div>
+            <div class="col-4 text-center mt-3">
+              <div class="text-center btn-group">
+                <a class="btn grad-btn-danger text-white btn-group text-uppercase"
+                  (click)="rejectFriendRequest(currentUser.id, user.id)">
+                  <i class="material-icons">delete_forever</i> Reject
+                </a>
+                &nbsp;
+                <a class="btn grad-btn-success btn-group text-uppercase"
+                  (click)="acceptFriendRequest(currentUser.id, user.id)">
+                  <i class="material-icons">check_circle</i> Accept
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="bg-dark text-light text-center m-2 alert rounded">
+          <pagination-controls (pageChange)="p2 = $event"></pagination-controls>
+        </div>
+      </div>
+
+    </div> <br>
+
+
+    <!-- My current friends -->
+    <div class="trans-div-light container py-3">
+      <h4 class="text-center font-weight-bold text-uppercase">My Friends </h4>
+      <hr class="w-50">
+
+      <div class="text-center bg-light mt-3 alert" id="usersView" *ngIf="userFriends && !userFriends.length">
+        <h6 class="text-danger">
+          <i class="material-icons">notification_important</i> <br>Currently no  Friends</h6>
+      </div>
+      <div class="input-group mb-3 col-12" *ngIf="userFriends && userFriends.length">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Filter My Friends by Name</span>
+        </div>
+        <div class="custom-file">
+          <input type="text" class="form-control" name="searchString" placeholder="Type to search..."
+            [(ngModel)]="searchMyFriends" />           
+
+          <div class="input-group-append">
+            <span class="input-group-text"><i class="material-icons text-primary">search</i></span>
+          </div>
+        </div>               
+      </div>
+      <!-- <div class="text-center bg-light mt-3 alert" id="usersView" *ngIf=" (userFriends |  filterNames : searchMyFriends).length==0 ">
+        <h6 class="text-danger">
+          <i class="material-icons">notification_important</i> <br>Currently no Friends with {{searchMyFriends}} </h6>
+      </div> -->
+
+      <div id="shoutsView"  *ngIf="userFriends && userFriends.length">
+        <div class="bg-white rounded"
+          *ngFor="let user of userFriends |  filterNames : searchMyFriends | paginate: { itemsPerPage: 5, currentPage: p3 }">   
+          <div class="col-12 row py-2 px-5">
+            <div class="col-1">
+              <div style="background-color:#136120fa; height: 3.5rem; width: 3.5rem; border:0.2rem solid #ffff"
+                class="rounded-circle border-light text-light text-center p-2">
+                <h4>{{user.firstName[0]}}{{user.lastName[0]}}</h4>
+              </div>
+            </div>
+            <div class="col-7">
+              <h5> {{user.firstName}}&nbsp;{{user.lastName}} </h5>
+              <span> {{user.email}} </span>
+            </div>
+            <div class="col-4 text-center mt-3">
+              <div class="text-center btn-group">
+                <a class="btn grad-btn-alert btn-group text-uppercase"
+                  (click)="unFriendRequest(currentUser.id, user.id)">
+                  <i class="material-icons">person_add_disabled</i> Unfriend
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="bg-dark text-light text-center m-2 alert rounded">
+          <pagination-controls (pageChange)="p3 = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

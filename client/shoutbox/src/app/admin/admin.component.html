@@ -1,0 +1,48 @@
+<div id="sidebar">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div id="adminContent">
+      <h4> <span class="text-secondary">Welcome </span> <strong> {{currentUser.firstName}}&nbsp;{{currentUser.lastName}} </strong></h4>
+    <hr>
+
+    <div class="trans-div-dark container p-3 mt-4">
+      <h4 class="text-center text-uppercase">All Active Users </h4>
+      <hr class="bg-light w-50">
+
+      <div id="usersView" *ngIf='activeUsers && activeUsers.length'>
+        <div class="row">
+          <div class="col-12 p-2">
+            <table class="table table-striped text-light text-center">
+              <thead class="thead-light">
+                <tr>
+                  <th>Full Name</th>
+                  <th>Date Of Birth</th>
+                  <th>E-mail</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tr *ngFor="let activeUser of activeUsers|paginate : {itemsPerPage:10,currentPage:p}">
+                <td>{{ activeUser.firstName }} {{ activeUser.lastName }}</td>
+                <td>{{ activeUser.dateOfBirth }}</td>
+                <td>{{ activeUser.email }}</td>
+                <td>
+                  <a class="btn grad-btn-success text-uppercase" routerLink='/viewshouts/{{ activeUser.id }}'>View Shouts</a> &nbsp;
+                  <a class="btn grad-btn-danger text-uppercase" routerLink='/deleteuser/{{ activeUser.id }}'>Delete User</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bg-light text-center col-12 pt-3 trans-div-light">
+            <pagination-controls (pageChange)="p =$event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center bg-light mt-3 alert" id="usersView" *ngIf='activeUsers && !activeUsers.length'>
+        <h6 class="text-danger">
+            <i class="material-icons">notification_important</i> <br>Currently no Active Users</h6>
+      </div>
+
+
+    </div>
+  </div>
+</div>
