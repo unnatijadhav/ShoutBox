@@ -12,18 +12,6 @@ export class LoginService {
 
   constructor(private _http:HttpClient) { }
 
-  // login(email:string, password:string) {
-  //   return this._http.post<{access_token:  string}>('http://www.your-server.com/auth/login', {email, password}).pipe(tap(res => {
-  //   localStorage.setItem('access_token', res.access_token);
-  // }))
-  // }
-
-  // register(email:string, password:string) {
-  //   return this._http.post<{access_token: string}>('http://www.your-server.com/auth/register', {email, password}).pipe(tap(res => {
-  //   this.login(email, password)
-  // }))
-  // }
-
   loginUser(user:User):Observable<any>{
     return this._http.post(this.baseUrl,user);
   }
