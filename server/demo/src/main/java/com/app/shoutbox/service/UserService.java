@@ -8,24 +8,10 @@ import com.app.shoutbox.model.User;
 
 public interface UserService {
 	
-	/*
-	 * Author: Prashant Sharma
-	 */
 	public User registerUser(User u);
 	public boolean verifyEmail(String mail);
 	public List<Shouts> getCurrentUserShouts(int id);
-
-	
-	
-	/*
-	 * Author: Alap Tekadpande
-	 */
 	public User loginUser(User u);
-
-	
-	/*
-	 * Author: Unnati Jadhav
-	 */
 	public User getCurrentUserById(Integer currentUserId);
 	
 	/*	 All PENDING FRIEND users (status: none, pending and rejected) */	
