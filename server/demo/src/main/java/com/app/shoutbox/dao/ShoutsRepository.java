@@ -15,7 +15,6 @@ public interface ShoutsRepository extends JpaRepository<Shouts, Integer>{
 	@Query(" select u from User u where u.id in (select f.friend from Friends f where f.friend_owner like ?1 and f.flag like ?2) and u.userActive=1")
 	public List<User> findByOwner(User u1,FriendRequestFlag flag);
 
-	//public List<Shouts> findByOwnerAndShoutActive(User u,boolean shoutActive);
 	@Query("Select s from Shouts s where s.owner like ?1 and s.shoutActive like ?2")
 	public List<Shouts> findByOwnerAndShoutActive(User user,boolean shoutActive);
 
