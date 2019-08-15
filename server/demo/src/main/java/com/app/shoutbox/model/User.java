@@ -41,9 +41,6 @@ public class User {
 	//Comment Mapping
 	private List<Comments> comments = new ArrayList<Comments>();
 	
-	//Friend mapping
-	//private List<User> friends = new ArrayList<>();
-	
 	public User() {
 	}
 	
@@ -163,13 +160,6 @@ public class User {
 
 	public void setComments(List<Comments> comments) {
 		this.comments = comments;
-	}
-
-	//To maintain bidirectional mapping
-	//This is helper method : everytime at inserting shout call this method and pass shout object to this method.
-	public void addShouts(Shouts sh) {
-		shouts.add(sh);
-		sh.setOwner(this);
 	}
 	
 	@Override
