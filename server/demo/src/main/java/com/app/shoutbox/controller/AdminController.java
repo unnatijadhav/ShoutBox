@@ -43,7 +43,7 @@ public class AdminController {
 	private AdminService service;
 
 	/**
-	 * GET ACTIVE USERS (ABHIJIT ROKADE)
+	 * GET ACTIVE USERS 
 	 */
 	@GetMapping("/active")
 	public List<User> getActiveUsers(boolean status,Role role){
@@ -54,7 +54,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * GET INACTIVE USERS (ABHIJIT ROKADE)
+	 * GET INACTIVE USERS
 	 */
 	@GetMapping("/inactive")
 	public List<User> getInactiveUsers(boolean status,Role role){
@@ -65,7 +65,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * GET REPORTED SHOUTS (PRASHANT SHARMA)
+	 * GET REPORTED SHOUTS
 	 */
 	@GetMapping("/isreported")
 	public Map<String,Object> getReportedShouts(boolean status){
@@ -128,7 +128,7 @@ public class AdminController {
 	
 	
 	/**
-	 * DELETE SHOUT BY SHOUT ID (ABHIJIT ROKADE)
+	 * DELETE SHOUT BY SHOUT ID 
 	 */
 	@GetMapping("/deleteshouts/{id}")
 	public int deleteShouts(@PathVariable("id")int id){
@@ -137,7 +137,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * APPROVE NEWLY REGISTERED USERS (ABHIJIT ROKADE)
+	 * APPROVE NEWLY REGISTERED USERS 
 	 */
 	@GetMapping("/approve/{id}")
 	public int approveUser(@PathVariable("id")int id){
