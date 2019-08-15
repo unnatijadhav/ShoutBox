@@ -43,7 +43,7 @@ export class AdminComponent implements OnInit {
   }
 
   /**
-	 * GET ACTIVE USERS (ABHIJIT ROKADE)
+	 * GET ACTIVE USERS
 	 */
   getActiveUsers(){
     console.log("inside get");
