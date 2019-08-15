@@ -31,7 +31,7 @@ export class DeleteshoutsComponent implements OnInit {
   }
 
   /**
-	 * DELETE SHOUT BY SHOUT ID (ABHIJIT ROKADE)
+	 * DELETE SHOUT BY SHOUT ID 
 	 */
   deleteShouts() {
     if (confirm("Do you really want to delete this shout.")) {
