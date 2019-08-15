@@ -99,7 +99,7 @@ public class ShoutController {
 	}
 
 	/*
-	 * AUTHOR: SADIYA DESCRIPTION: UPLOADING AUDIO,VIDEO AND IMAGE
+	 * UPLOADING AUDIO,VIDEO AND IMAGE
 	 */
 	@PostMapping("/upload")
 	public ResponseEntity<Shouts> PostShout(@RequestParam("data") MultipartFile imageUpload,
@@ -121,7 +121,6 @@ public class ShoutController {
 
 		try {
 			logger.info("file name" + imageUpload.getOriginalFilename());
-			// calling service layer method
 			return new ResponseEntity<Shouts>(service.postShout(shout), HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,7 +130,7 @@ public class ShoutController {
 	}
 
 	/*
-	 * AUTHOR: SADIYA DESCRIPTION: UPLAODING ONLY TEXT
+	 * UPLAODING ONLY TEXT
 	 */
 	@PostMapping("/upload/text")
 	public ResponseEntity<Shouts> PostShouText(@RequestParam("data") String textUpload,
@@ -164,7 +163,7 @@ public class ShoutController {
 	}
 
 	/*
-	 * getting friends's shouts CHECK SHOUT IS NULL (UNNATI JADHAV)
+	 * getting friends's shouts 
 	 */
 	@GetMapping("/get-friends-shouts/{currentUserId}")
 	public ResponseEntity<?> getFriendsShouts(@PathVariable("currentUserId") Integer currentUserId) {
@@ -225,7 +224,7 @@ public class ShoutController {
 	} // end of block
 
 	/*
-	 * AUTHOR: PRASHANT SHARMA
+	 * REPORT CURRENT SHOUT
 	 */
 	@GetMapping("/report/{currentShoutId}")
 	public HttpStatus reportCurrentShout(@PathVariable("currentShoutId") Integer currentShoutId) {
