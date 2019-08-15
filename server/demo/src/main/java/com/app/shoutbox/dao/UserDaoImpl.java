@@ -17,9 +17,6 @@ public class UserDaoImpl implements UserDao{
 	@Autowired
 	private UserRepositroy repo;
 	
-	/*
-	 * AUTHOR: Prashant Sharma
-	*/
 	@Override
 	public Integer verifyMail(String mail){
 		return repo.verifyMail(mail);
@@ -35,9 +32,6 @@ public class UserDaoImpl implements UserDao{
 		return repo.getCurrentUserShouts(user);
 	}
 
-	/*
-	 * AUTHOR: Prashant Sharma
-	*/
 	@Override
 	public User getCurrentUserById(Integer currentUserId) {
 		return repo.findOne(currentUserId);
