@@ -21,7 +21,7 @@ export class AdminService {
   }
 
   /**
-	 * GET ACTIVE USERS (ABHIJIT ROKADE)
+	 * GET ACTIVE USERS 
 	 */
   getActiveUsers():Observable<User[]>{
     this.activeUsers=this.http.get<User[]>(this.url+"/active");
@@ -29,7 +29,7 @@ export class AdminService {
   }
 
   /**
-	 * GET ACTIVE SHOUTS OF SELECTED USER (PRASHANT SHARMA)
+	 * GET ACTIVE SHOUTS OF SELECTED USER 
 	 */
   getSelectedUsersShout(id:number){
     return this.http.get(this.url + "/myShouts/" + id);
@@ -41,14 +41,14 @@ export class AdminService {
   }
 
   /**
-	 * DELETE SHOUT BY SHOUT ID (ABHIJIT ROKADE)
+	 * DELETE SHOUT BY SHOUT ID 
 	 */
   deleteShouts(shoutId:number){
     return this.http.get(this.url+"/deleteshouts/"+shoutId);
   }
 
   /**
-	 * DELETE USER BY USER ID (ABHIJIT ROKADE)
+	 * DELETE USER BY USER ID 
 	 */
   deleteUser(userId:number){
     return this.http.get(this.url+"/deleteuser/"+userId);
@@ -59,7 +59,7 @@ export class AdminService {
   }
 
   /**
-	 * GET INACTIVE USERS (ABHIJIT ROKADE)
+	 * GET INACTIVE USERS 
 	 */
   getInactiveUsers():Observable<User[]>{
     this.inActiveUsers=this.http.get<User[]>(this.url+"/inactive");
@@ -67,14 +67,14 @@ export class AdminService {
   }
 
   /**
-	 * GET REPORTED SHOUTS (ABHIJIT ROKADE)
+	 * GET REPORTED SHOUTS 
 	 */
   getReportedShouts():Observable<Shout[]>{
     return this.http.get<Shout[]>(this.url+"/isreported");
   }
 
   /**
-	 * APPROVE NEWLY REGISTERED USERS (ABHIJIT ROKADE)
+	 * APPROVE NEWLY REGISTERED USERS
 	 */
   approveUsers(userId:number){
     return this.http.get<User[]>(this.url+"/approve/"+userId);
