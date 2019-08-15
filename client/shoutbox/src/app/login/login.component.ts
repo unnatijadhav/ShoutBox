@@ -23,23 +23,10 @@ export class LoginComponent implements OnInit {
   }
 
   verifyMail(){
-    // this._regSer.verifyMail(this.newUser.email).subscribe(
-    //   (res)=>{
-    //     if(res == "NOT_FOUND")
-    //       this.uniqueId = false;
-    //     else 
-    //       this.uniqueId = true;
-    //   }
-    //   ,(err)=>{});
     this.uniqueId = true ;
   }
-//   {
-  //     "timestamp": 1560863506197,
-  //     "status": 404,
-  //     "error": "Not Found",
-  //     "message": "No message available",
-  //     "path": "/user/checkmail"
-  // }
+  
+  //authenticate user 
   authenticateUser(){
     this._loginSer.loginUser(this.newUser).subscribe(
       (res)=>{
