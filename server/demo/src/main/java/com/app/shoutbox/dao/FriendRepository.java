@@ -40,14 +40,7 @@ public interface FriendRepository extends JpaRepository<Friends, Integer> {
 			@Param("currentUserId") Integer currentUserId,
 			@Param("currentFriendId") Integer currentFriendId);
 
-	/*	
-	 * insert values with Status PENDING in FRIEND
-	 * */
-	/*@Modifying
-	@Query(value="insert into user_friends(flag,friend_owner,friend) values(?1, ?2, ?3)",nativeQuery=true)
-	int postFriendRequest(String flag,User currentUser, User currentFriend);*/
-
-	
+		
 	@Transactional
 	@Procedure("PROC_FRIEND_REQUEST_ACCEPT_REJECTED")
 	void postFriendRequest(@Param("sentFlag") String sentFlag,@Param("pendingFlag") String pendingFlag,
@@ -73,8 +66,7 @@ public interface FriendRepository extends JpaRepository<Friends, Integer> {
 			@Param("currentUserId") Integer currentUserId,
 			@Param("currentFriendId") Integer currentFriendId);
 	
-	
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 	
 	/*	
 	 * All REJECTED FRIENDS user list (status: Rejected)
