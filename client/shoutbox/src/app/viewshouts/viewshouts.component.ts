@@ -39,7 +39,7 @@ export class ViewshoutsComponent implements OnInit {
   }
 
   /**
-     * GET ACTIVE SHOUTS (ABHIJIT ROKADE)
+     * GET ACTIVE SHOUTS 
      */
   getActiveShouts(id:number) {
     this.service.getSelectedUsersShout(id).subscribe(
@@ -64,7 +64,7 @@ export class ViewshoutsComponent implements OnInit {
 
 
   /**
-     * GET SELECTED USEr DETAILS (PRASHANT SHARMA)
+     * GET SELECTED USER DETAILS 
      */
   getSelectedUser(id:number){
     this._userServ.getCurrentUserById(id).subscribe(
