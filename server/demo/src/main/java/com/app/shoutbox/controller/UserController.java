@@ -48,7 +48,7 @@ public class UserController {
 
 	
 	/*
-	 * User Registration (PRASHANT SHARMA)
+	 * User Registration 
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@RequestBody User u) { //@RequestBody  annotation maps the HttpRequest body to a transfer or domain object, enabling automatic deserialization of the inbound HttpRequest body onto a Java object.
@@ -65,7 +65,7 @@ public class UserController {
 	}
 
 	/*
-	 * VERIFY EMAIL ID UNIQUE or NOT (PRASHANT SHARMA)
+	 * VERIFY EMAIL ID UNIQUE or NOT 
 	 */
 	@PostMapping("/check-email")
 	public HttpStatus verifyEMail(@RequestBody String mail) {
@@ -81,7 +81,7 @@ public class UserController {
 	}
 
 	/*
-	 * GET CURRENT USER -> SHOUTS (PRASHANT SHARMA)
+	 * GET CURRENT USER SHOUTS
 	 */
 
 	@GetMapping("/myShouts/{id}")
@@ -129,7 +129,7 @@ public class UserController {
 	}
 
 	/*
-	 * User LOGIN (ALAP TEKADPANDE)
+	 * User LOGIN 
 	 */
 	@PostMapping("/login")
 	public ResponseEntity<?> loginUser(@RequestBody User u) {
@@ -150,7 +150,7 @@ public class UserController {
 	}
 
 	/*
-	 * GET USER BY ID... (Unnati Jadhav)
+	 * GET USER BY ID...
 	 */
 	@GetMapping("/current/{currentUserId}")
 	public User getUserById(@PathVariable("currentUserId") Integer currentUserId) {
