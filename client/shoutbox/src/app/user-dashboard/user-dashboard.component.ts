@@ -102,7 +102,6 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
-  // AUTHOR :SADIYA SHAIKh
   onSelecttext(event) {
     //event for selecting the text
     console.log('file selected...');
