@@ -11,8 +11,6 @@ import { UserDashboardService } from '../services/user-dashboard.service';
   styleUrls: ['./reportedshouts.component.scss', '../app.component.scss']
 })
 export class ReportedshoutsComponent implements OnInit {
-  
- // reportedShouts:Shout[];
   currentUser:User = new User();
   currentUserId:number;
   userTextShouts: ShoutText[];
@@ -42,7 +40,7 @@ export class ReportedshoutsComponent implements OnInit {
   }
 
   /**
-	 * GET REPORTED SHOUTS (ABHIJIT ROKADE)
+	 * GET REPORTED SHOUTS 
 	 */
   getReportedShouts(){
     console.log("getReportedShouts()");
@@ -67,7 +65,7 @@ export class ReportedshoutsComponent implements OnInit {
   }
 
   /**
-	 * GET REPORTED SHOUTS (PRASHANT SHARMA)
+	 * GET REPORTED SHOUTS 
 	 */
   deleteReportedShout(id:number){
       if(confirm("Do you really want to delete this shout.")){
