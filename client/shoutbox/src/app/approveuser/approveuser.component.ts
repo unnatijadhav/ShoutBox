@@ -38,7 +38,7 @@ export class ApproveuserComponent implements OnInit {
   }
 
   /**
-	 * GET INACTIVE USERS (ABHIJIT ROKADE)
+	 * GET INACTIVE USERS 
 	 */
   getInactiveUsers(){
     this.service.getInactiveUsers().subscribe((resp)=>{
@@ -47,7 +47,7 @@ export class ApproveuserComponent implements OnInit {
   }
 
   /**
-	 * APPROVE NEWLY REGISTERED USERS (ABHIJIT ROKADE)
+	 * APPROVE NEWLY REGISTERED USERS 
 	 */
   approveUsers(id:number){
       if(confirm("Do you really want to approve user.")){
