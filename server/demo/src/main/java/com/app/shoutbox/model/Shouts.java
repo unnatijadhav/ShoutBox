@@ -123,17 +123,6 @@ public class Shouts {
 	public void setComments(List<Comments> comments) {
 		this.comments = comments;
 	}
-	/*
-	 * 
-	 * @OneToMany(mappedBy = "shout", cascade = CascadeType.ALL)
-	 * 
-	 * @JsonIgnore public List<Comment> getComments() { return comments; }
-	 * 
-	 * public void setComments(List<Comment> comments) { this.comments = comments; }
-	 */
-
-
-	
 
 	@Override
 	public String toString() {
