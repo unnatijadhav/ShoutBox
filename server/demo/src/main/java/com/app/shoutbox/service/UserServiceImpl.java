@@ -22,9 +22,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao dao;
 	@Autowired
 	private FriendDao dao1;
-	/*
-	 * AUTHOR: Prashant Sharma
-	*/
+	
 	@Override
 	public User registerUser(User u) {
 		return dao.registerUser(u);
@@ -45,20 +43,11 @@ public class UserServiceImpl implements UserService {
 		return dao.getCurrentUserShouts(user);
 	}
 	
-	
-	
-	/*
-	 * AUTHOR: AlapTekadPande
-	*/
 	@Override
 	public User loginUser(User u) {
 		return dao.loginUser(u);
 	}
 	
-	
-	/*
-	 * AUTHOR: Unnati Jadhav
-	*/
 	@Override
 	public User getCurrentUserById(Integer currentUserId) {
 		return dao.getCurrentUserById(currentUserId);
