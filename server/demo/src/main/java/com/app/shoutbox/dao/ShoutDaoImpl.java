@@ -20,9 +20,6 @@ public class ShoutDaoImpl implements ShoutDao {
 	@Autowired
 	private ShoutsRepository repo;
 
-	/*
-	 * AUTHOR: SADIYA SHAIKH
-	 */
 	@Override
 	public List<User> getFriends(User u1, FriendRequestFlag flag) {
 		logger.info("inside shoutDaoImpl.getFriends()");
@@ -46,18 +43,12 @@ public class ShoutDaoImpl implements ShoutDao {
 		return repo.findOne(currentShoutId);
 	}
 
-	/*
-	 * AUTHOR: SADIYA SHAIKH
-	 */
 	@Override
 	public Shouts postShout(Shouts s) {
 		logger.info("inside shoutDaoIml.postShout()");
 		return repo.save(s);
 	}
 
-	/*
-	 * AUTHOR: PRASHANT SHARMA
-	 */
 	@Override
 	public int reportCurrentShout(Integer currentShoutId) {
 		return repo.reportCurrentShout(currentShoutId);
